@@ -56,8 +56,13 @@ class ComponentOne extends React.Component {
     this.setState({ editing : true});
   };
 
+  buttonDelete = () => {
+    this.props.delete(this.props.index); //index xác thực các phần tử component
+  }
+
   buttonSave = () => {
     this.setState({ editing: false });
+    this.props.edit(this.props.index, this.txtName); //truyền 
     console.log(this.txtName.value);  // use to talke and change value trong artribute
   };
 
@@ -65,7 +70,7 @@ class ComponentOne extends React.Component {
     return (
       <div className="chi">
         <div className="Wrapper">
-          <img src={this.props.image} alt = "anhlatop" />
+          <img src={this.props.image} alt="anhlatop" />
           {this.show_featured(this.props.hot)}
           <h2>{this.props.children}</h2>
           <p>Mẫu laptop đẹp và sang trọng</p>
@@ -78,7 +83,7 @@ class ComponentOne extends React.Component {
             >
               Thêm
             </button>
-            <button className="ButtonDel">Xóa</button>
+            <button className="ButtonDel" onClick={() => this.buttonDelete()}>Xóa</button>
             <button className="ButtonEdit" onClick={() => this.buttonEdit()}>
               Sửa
             </button>
